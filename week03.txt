@@ -2,6 +2,15 @@
 
 echo "출력 할 문자열" >> 파일명
 rm 파일명
+history
 
 깃 명령어
 
+git branch -M main
+git remote add origin 주소
+git push -u origin main
+git push
+git remote -v
+git remote remove origin
+git clone 원격 리포지토리 주소
+git clone 원격 리포지토리 주소 .
