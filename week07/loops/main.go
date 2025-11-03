@@ -4,38 +4,51 @@ import (
 	"bufio"
 	"fmt"
 	"log"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func main() {
-	// // shadowing
-	// var float64 float64 = 2.71
-	// var f float64 = 3.991
-	// fmt.Println(float64)
-	// fmt.Println(f)
+	dice := rand.Intn(6) + 1
+	fmt.Println(dice)
 
-	// var fmt float64 = 2.71
-	// fmt.Println(fmt)
+	seconds := time.Now().Unix()
+	rand.Seed(seconds)
+	target := rand.Intn(100) + 1
+	fmt.Println("I've chosen a random number between 1 and 100.")
+	fmt.Println("Can you guess it?")
 
-	fmt.Print("Enter a score: ")
-	r := bufio.NewReader(os.Stdin)
-	i, err := r.ReadString('\n')
-	if err != nil {
-		log.Fatal(err)
+	reader := bufio.NewReader(os.Stdin)
+	success := false
+	for guesses := 0; guesses < 10; guesses++ {
+		fmt.Println("You have", 10-guesses, "guesses left.")
+		fmt.Print("Make a guess: ")
+		input, err := reader.ReadString('\n')
+		if err != nil {
+			log.Fatal(err)
+		}
+		input = strings.TrimSpace(input)
+		guess, err := strconv.Atoi(input)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		if guess < target {
+			fmt.Println("Oops. Your guess was LOW.")
+		} else if guess > target {
+			fmt.Println("Oops. Your guess was HIGH.")
+		} else {
+			success = true
+			fmt.Println("Good job! You guessed it!")
+			break
+		}
 	}
 
-	i = strings.TrimSpace(i)                // 문자열 주위에 붙은 공란 및 탭 키 등 제거
-	score, err := strconv.ParseFloat(i, 64) // 정리된 문자열을 실수타입으로 변환
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	if score >= 60 {
-		fmt.Println(score, "Pass")
-	} else {
-		fmt.Println(score, "Fail")
+	if !success {
+		fmt.Println("Sorry, you didn't guess my number. It was:", target)
 	}
 
 }
