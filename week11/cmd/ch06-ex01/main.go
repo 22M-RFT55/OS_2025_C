@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	subjects := make([]string, 3)
+	subjects := []string{"Go", "", "Python"}
 	subjects[0] = "Go"
 	subjects[2] = "Python"
 
