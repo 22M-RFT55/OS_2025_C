@@ -4,7 +4,9 @@ import "fmt"
 
 func main() {
 	subjects := [4]string{"Go", "Javascript", "Python", "Linux"}
-	subjectsSlice := subjects[1:3] // 슬라이싱
+	subjectsSlice := subjects[:3] // 슬라이싱
+	//subjects[0] = "Java"
+	subjectsSlice[0] = "Database"
 	for _, subject := range subjects {
 		fmt.Println(subject)
 	}
