@@ -12,24 +12,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// fmt.Println(lines)
-	var names []string
-	var counts []int
+
+	counts := make(map[string]int)
 	for _, line := range lines {
-		matched := false
-		for i, name := range names { // 이미 있던 이름 counts[i]++
-			if name == line {
-				counts[i]++
-				matched = true
-			}
-		}
-		if matched == false { // 처음 나온 이름
-			names = append(names, line)
-			counts = append(counts, 1)
-		}
+		counts[line]++
 	}
 
-	for i, name := range names {
-		fmt.Println(name, ":", counts[i])
+	for name, count := range counts {
+		fmt.Println(name, ":", count)
 	}
 }
