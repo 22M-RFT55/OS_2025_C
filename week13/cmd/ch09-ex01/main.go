@@ -17,5 +17,5 @@ func main() {
 	kmph := Kilometers(151)
 	fmt.Printf("%0.2f Kilometers per hour equals %0.2f mile per hour\n", kmph, kmph.ToMiles())
 	meter := Meters(151000)
-	fmt.Printf("%0.2f meter equals %0.3f miles\n", meter, meter.ToMiles())
+	fmt.Printf("%0.2f meter equals %0.2f miles\n", meter, meter.ToMiles())
 }
