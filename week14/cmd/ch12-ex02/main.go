@@ -7,7 +7,7 @@ func safeDivide(a, b int) {
 		if err := recover(); err != nil {
 			fmt.Println("에러 발생:", err)
 		}
-	}()
+	}() // 바로 호출
 
 	if b == 0 {
 		panic("0으로 나눌 수 없습니다!")
@@ -15,7 +15,7 @@ func safeDivide(a, b int) {
 
 	result := a / b
 	fmt.Println("결과:", result)
-}
+} // 여기서 defer
 
 func main() {
 	fmt.Println("첫 번째 호출")
